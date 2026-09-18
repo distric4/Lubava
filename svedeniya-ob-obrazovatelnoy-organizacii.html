@@ -24,7 +24,7 @@
       <a href="index.html#uslugi">Услуги</a>
       <a href="programmy-obucheniya.html">Программы обучения</a>
       <a href="biblioteka.html">Библиотека</a>
-      <a href="index.html#zapis">Контакты</a>
+      <a href="kontakty.html">Контакты</a>
     </nav>
     <button class="burger" aria-label="Открыть меню" aria-expanded="false"><span></span></button>
   </div>
@@ -76,20 +76,124 @@
 
   <section class="legal-section" id="dokumenty">
     <h2>Документы</h2>
-    <ul>
-      <li>Запись о регистрации ИП</li>
-      <li>Уведомление о постановке ИП на налоговый учёт</li>
-      <li>Уведомление о предоставлении лицензии</li>
-      <li>Сведения о реализации образовательной программы</li>
-      <li>Выписка из реестра лицензий</li>
-      <li>Акт оценки соискателя лицензии/лицензиата</li>
-      <li>Экспертное заключение на вид деятельности</li>
-      <li>Санитарно-эпидемиологическое заключение</li>
-      <li>Выписка ЕГРИП</li>
-      <li>Программа ДО</li>
-      <li>Приказ об утверждении стоимости образовательных услуг</li>
-      <li>Форма договора об оказании услуг</li>
-      <li>Форма сертификата</li>
+    <ul class="doc-list">
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-1" id="doc-trigger-1">
+          <span>Запись о регистрации ИП</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-1" role="region" aria-labelledby="doc-trigger-1">
+          <div class="accordion-panel-inner"><p>Подтверждает, что деятельность ведётся официально зарегистрированным индивидуальным предпринимателем.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-2" id="doc-trigger-2">
+          <span>Уведомление о постановке ИП на налоговый учёт</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-2" role="region" aria-labelledby="doc-trigger-2">
+          <div class="accordion-panel-inner"><p>Подтверждает постановку на учёт в налоговом органе.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-3" id="doc-trigger-3">
+          <span>Уведомление о предоставлении лицензии</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-3" role="region" aria-labelledby="doc-trigger-3">
+          <div class="accordion-panel-inner"><p>Официальное уведомление о выдаче лицензии на образовательную деятельность.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-4" id="doc-trigger-4">
+          <span>Сведения о реализации образовательной программы</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-4" role="region" aria-labelledby="doc-trigger-4">
+          <div class="accordion-panel-inner"><p>Описывает, как фактически реализуется образовательная программа.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-5" id="doc-trigger-5">
+          <span>Выписка из реестра лицензий</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-5" role="region" aria-labelledby="doc-trigger-5">
+          <div class="accordion-panel-inner"><p>Подтверждает действующий статус лицензии в официальном реестре.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-6" id="doc-trigger-6">
+          <span>Акт оценки соискателя лицензии/лицензиата</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-6" role="region" aria-labelledby="doc-trigger-6">
+          <div class="accordion-panel-inner"><p>Документ по итогам проверки при получении лицензии.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-7" id="doc-trigger-7">
+          <span>Экспертное заключение на вид деятельности</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-7" role="region" aria-labelledby="doc-trigger-7">
+          <div class="accordion-panel-inner"><p>Заключение экспертизы, подтверждающее соответствие требованиям для данного вида деятельности.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-8" id="doc-trigger-8">
+          <span>Санитарно-эпидемиологическое заключение</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-8" role="region" aria-labelledby="doc-trigger-8">
+          <div class="accordion-panel-inner"><p>Подтверждает соответствие помещения санитарным нормам.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-9" id="doc-trigger-9">
+          <span>Выписка ЕГРИП</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-9" role="region" aria-labelledby="doc-trigger-9">
+          <div class="accordion-panel-inner"><p>Официальная выписка из реестра индивидуальных предпринимателей.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-10" id="doc-trigger-10">
+          <span>Программа ДО</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-10" role="region" aria-labelledby="doc-trigger-10">
+          <div class="accordion-panel-inner"><p>Сама программа дополнительного образования, по которой ведётся обучение.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-11" id="doc-trigger-11">
+          <span>Приказ об утверждении стоимости образовательных услуг</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-11" role="region" aria-labelledby="doc-trigger-11">
+          <div class="accordion-panel-inner"><p>Официально утверждённые цены на обучение.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-12" id="doc-trigger-12">
+          <span>Форма договора об оказании услуг</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-12" role="region" aria-labelledby="doc-trigger-12">
+          <div class="accordion-panel-inner"><p>Типовой договор, который заключается с обучающимся.</p></div>
+        </div>
+      </li>
+      <li class="doc-item" data-accordion-item>
+        <button class="doc-trigger" type="button" data-accordion-trigger aria-expanded="false" aria-controls="doc-panel-13" id="doc-trigger-13">
+          <span>Форма сертификата</span>
+          <svg class="icon icon-sm doc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-panel" id="doc-panel-13" role="region" aria-labelledby="doc-trigger-13">
+          <div class="accordion-panel-inner"><p>Образец документа, который выдаётся по итогам обучения.</p></div>
+        </div>
+      </li>
     </ul>
   </section>
 
@@ -158,15 +262,15 @@
     <div class="footer-grid">
       <div>
         <p>Любава Князева — психолог, психотравматолог, специалист по песочной терапии.</p>
-        <p>Новосибирск, ул. Высокогорная 2-я, 1/1, офис 302.</p>
-        <p>Тел. <a href="tel:+79139143362">8 (913) 914-33-62</a></p>
+        <p class="footer-contact-row"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Новосибирск, ул. Высокогорная 2-я, 1/1, офис 302</span></p>
+        <p class="footer-contact-row"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5c.8 0 1.6.6 1.8 1.4l.7 2.6a2 2 0 0 1-.5 2L7 11a13 13 0 0 0 6 6l1.5-1.6a2 2 0 0 1 2-.5l2.6.7c.8.2 1.4 1 1.4 1.8v2.4c0 1.2-1 2.1-2.2 2C9.9 21 3 14.1 2.6 6.7c-.1-1.2.8-2.2 2-2.2z"/></svg><a href="tel:+79139143362">8 (913) 914-33-62</a></p>
       </div>
       <nav class="footer-nav">
         <a href="obo-mne.html">Обо мне</a>
         <a href="index.html#uslugi">Услуги</a>
         <a href="programmy-obucheniya.html">Программы обучения</a>
         <a href="index.html#otzyvy">Отзывы</a>
-        <a href="index.html#zapis">Контакты</a>
+        <a href="kontakty.html">Контакты</a>
         <a href="biblioteka.html">Библиотека</a>
       </nav>
       <div></div>

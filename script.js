@@ -54,6 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ---------- Accordions (service cards "Подробнее", documents list) ---------- */
+  var accordionTriggers = document.querySelectorAll('[data-accordion-trigger]');
+  accordionTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      var isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      var item = trigger.closest('[data-accordion-item]');
+      trigger.setAttribute('aria-expanded', String(!isExpanded));
+      if (item) {
+        item.classList.toggle('is-expanded', !isExpanded);
+      }
+      var label = trigger.querySelector('[data-accordion-label]');
+      if (label) {
+        label.textContent = !isExpanded ? 'Свернуть' : 'Подробнее';
+      }
+    });
+  });
+
   /* ---------- Booking form ---------- */
   var form = document.getElementById('booking-form');
   if (form) {

@@ -24,7 +24,7 @@
       <a href="#uslugi">Услуги</a>
       <a href="programmy-obucheniya.html">Программы обучения</a>
       <a href="#otzyvy">Отзывы</a>
-      <a href="#zapis">Контакты</a>
+      <a href="kontakty.html">Контакты</a>
       <a class="nav-legal" href="svedeniya-ob-obrazovatelnoy-organizacii.html" title="Сведения об образовательной организации">Сведения</a>
       <a class="nav-phone" href="tel:+79139143362">8 (913) 914-33-62</a>
       <a class="btn btn-primary" href="#zapis">Записаться</a>
@@ -60,10 +60,22 @@
   <section class="bg-paper facts-section">
     <div class="container">
       <div class="facts-strip">
-        <div class="fact is-block">Индивидуальные и семейные консультации</div>
-        <div class="fact">Очно в Новосибирске и дистанционно</div>
-        <div class="fact">Психотравматология и песочная терапия</div>
-        <div class="fact">Аккредитация ОППЛ и Союза психотерапевтов</div>
+        <div class="fact is-block">
+          <svg class="icon icon-onblock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 5c-2.5 4.7-9.5 9-9.5 9z"/></svg>
+          <span>Индивидуальные и семейные консультации</span>
+        </div>
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span>Очно в Новосибирске и дистанционно</span>
+        </div>
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5c2-1 5-1 8 .5 3-1.5 6-1.5 8-.5v13c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z"/><line x1="12" y1="6" x2="12" y2="18.5"/></svg>
+          <span>Психотравматология и песочная терапия</span>
+        </div>
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M9 12.5 7 21l5-2.5 5 2.5-2-8.5"/></svg>
+          <span>Аккредитация ОППЛ и Союза психотерапевтов</span>
+        </div>
       </div>
     </div>
   </section>
@@ -128,6 +140,7 @@
           <li>Психотравматолог</li>
           <li>Преподаватель ОППЛ</li>
           <li>Аккредитованный супервизор</li>
+          <li>Руководитель Новосибирского представительства АПТ</li>
           <li>Юнгианская песочная терапия</li>
           <li>Работа со всеми возрастами</li>
           <li>Очно и онлайн</li>
@@ -141,23 +154,53 @@
     <div class="container">
       <h2 style="margin-bottom:40px;">С чем я работаю</h2>
       <div class="cards-grid">
-        <div class="card">
+        <div class="card" data-accordion-item>
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg></div>
           <h3>Индивидуальные консультации</h3>
           <p>Работа один на один с вашим запросом: тревога, самооценка, сложные решения, последствия травмы или кризиса. Полимодальный подход — беседа и, при необходимости, песочная терапия.</p>
           <div class="card-format">Очно, онлайн</div>
-          <a class="link-underline card-link" href="#zapis">Подробнее</a>
+          <button class="card-toggle" type="button" data-accordion-trigger aria-expanded="false" aria-controls="card-panel-1" id="card-trigger-1">
+            <span data-accordion-label>Подробнее</span>
+            <svg class="icon icon-sm card-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-panel" id="card-panel-1" role="region" aria-labelledby="card-trigger-1">
+            <div class="accordion-panel-inner">
+              <p>Работаем с тем, что для вас сейчас важнее всего: разобраться в чувствах, найти выход из тупика, справиться с тревогой или принять решение, которое давно откладывается. Использую полимодальный подход — беру методы из разных направлений психотерапии (в том числе песочную терапию), а не подгоняю ваш запрос под одну схему. Первая встреча — это всегда разговор о том, что привело вас, и совместный выбор формата дальнейшей работы.</p>
+              <a class="link-underline card-link" href="#zapis">Записаться на эту консультацию</a>
+            </div>
+          </div>
         </div>
-        <div class="card">
+        <div class="card" data-accordion-item>
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><circle cx="16" cy="9" r="2.6"/><path d="M3.5 20c.8-3.6 3-5.5 5.5-5.5s4.7 1.9 5.5 5.5"/><path d="M14 20c.6-2.7 2-4.3 4-4.3s3.6 1.7 4.3 4.3"/></svg></div>
           <h3>Семейные и детско-родительские консультации</h3>
           <p>Помогаю разобраться в конфликтах между супругами, между родителями и детьми, пройти семейный кризис. Встречи возможны как для всей семьи, так и по отдельности с каждым участником.</p>
           <div class="card-format">Очно, онлайн</div>
-          <a class="link-underline card-link" href="#zapis">Подробнее</a>
+          <button class="card-toggle" type="button" data-accordion-trigger aria-expanded="false" aria-controls="card-panel-2" id="card-trigger-2">
+            <span data-accordion-label>Подробнее</span>
+            <svg class="icon icon-sm card-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-panel" id="card-panel-2" role="region" aria-labelledby="card-trigger-2">
+            <div class="accordion-panel-inner">
+              <p>Работаю и с парой или семьёй целиком, и по отдельности с каждым участником конфликта — в зависимости от ситуации подберём подходящий формат. Помогаю увидеть конфликт со стороны, услышать друг друга и найти решение, которое не требует, чтобы кто-то один был «неправ». Отдельно работаю с детско-родительскими сложностями: непониманием, протестным поведением, трудностями переходного возраста.</p>
+              <a class="link-underline card-link" href="#zapis">Записаться на эту консультацию</a>
+            </div>
+          </div>
         </div>
-        <div class="card">
+        <div class="card" data-accordion-item>
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 13c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></div>
           <h3>Песочная терапия</h3>
           <p>Работа с песком и фигурками — способ прожить и осознать то, что трудно сформулировать словами. Подходит детям, взрослым и семьям, в том числе при работе с травмой и потерей.</p>
           <div class="card-format">Очно, онлайн</div>
-          <a class="link-underline card-link" href="#zapis">Подробнее</a>
+          <button class="card-toggle" type="button" data-accordion-trigger aria-expanded="false" aria-controls="card-panel-3" id="card-trigger-3">
+            <span data-accordion-label>Подробнее</span>
+            <svg class="icon icon-sm card-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-panel" id="card-panel-3" role="region" aria-labelledby="card-trigger-3">
+            <div class="accordion-panel-inner">
+              <p>Юнгианская песочная терапия — метод, в котором я работаю много лет и которому обучаю других психологов. Клиент создаёт композицию из песка и фигурок, а через неё проявляется то, что сложно облечь в слова напрямую. Подходит как самостоятельный метод и как часть индивидуальной консультации — если в разговоре тема буксует, песочница часто помогает найти новый угол зрения. Хорошо работает и с детьми, и со взрослыми.</p>
+              <a class="link-underline card-link" href="#zapis">Записаться на эту консультацию</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -250,15 +293,15 @@
     <div class="footer-grid">
       <div>
         <p>Любава Князева — психолог, психотравматолог, специалист по песочной терапии.</p>
-        <p>Новосибирск, ул. Высокогорная 2-я, 1/1, офис 302.</p>
-        <p>Тел. <a href="tel:+79139143362">8 (913) 914-33-62</a></p>
+        <p class="footer-contact-row"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Новосибирск, ул. Высокогорная 2-я, 1/1, офис 302</span></p>
+        <p class="footer-contact-row"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5c.8 0 1.6.6 1.8 1.4l.7 2.6a2 2 0 0 1-.5 2L7 11a13 13 0 0 0 6 6l1.5-1.6a2 2 0 0 1 2-.5l2.6.7c.8.2 1.4 1 1.4 1.8v2.4c0 1.2-1 2.1-2.2 2C9.9 21 3 14.1 2.6 6.7c-.1-1.2.8-2.2 2-2.2z"/></svg><a href="tel:+79139143362">8 (913) 914-33-62</a></p>
       </div>
       <nav class="footer-nav">
         <a href="obo-mne.html">Обо мне</a>
         <a href="index.html#uslugi">Услуги</a>
         <a href="programmy-obucheniya.html">Программы обучения</a>
         <a href="index.html#otzyvy">Отзывы</a>
-        <a href="index.html#zapis">Контакты</a>
+        <a href="kontakty.html">Контакты</a>
         <a href="biblioteka.html">Библиотека</a>
       </nav>
       <div></div>

@@ -210,6 +210,20 @@ hr.hairline{
 }
 .link-underline:hover{ text-decoration-color: currentColor; color: var(--accent-dark); }
 
+/* ---------- Icons ----------
+   Simple inline-SVG line icons, one stroke weight and one rounding
+   style everywhere (see <svg> markup) so they read as a single set. */
+.icon{
+  flex: none;
+  width: 26px;
+  height: 26px;
+  stroke: var(--accent);
+  fill: none;
+}
+.icon-sm{ width: 20px; height: 20px; }
+.icon-onblock{ stroke: var(--on-block); }
+.icon-ink{ stroke: var(--ink); }
+
 /* ---------- Header ---------- */
 .site-header{
   position: sticky;
@@ -482,6 +496,7 @@ hr.hairline{
   line-height: 1.4;
   display: flex;
   align-items: center;
+  gap: 16px;
   min-height: 120px;
   border-radius: var(--r-md);
   box-shadow: var(--shadow-sm);
@@ -634,6 +649,9 @@ hr.hairline{
   transform: translateY(-3px);
 }
 .card:hover h3{ color: var(--on-block); }
+.card-icon{ margin-bottom: 18px; }
+.card-icon .icon{ transition: stroke 150ms ease; }
+.card:hover .card-icon .icon{ stroke: var(--on-block); }
 .card h3{ margin-bottom: 14px; color: var(--ink); transition: color 150ms ease; }
 .card p{ font-size: 16px; margin-bottom: 20px; }
 .card-format{
@@ -651,6 +669,45 @@ hr.hairline{
 .card:hover .card-format{ background: rgba(241,243,246,.12); }
 .card-link{ display: inline-block; }
 .card:hover .card-link{ color: var(--on-block); text-decoration-color: var(--on-block-50); }
+
+/* Card "Подробнее" accordion toggle */
+.card-toggle{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  cursor: pointer;
+  transition: text-decoration-color 150ms ease, color 150ms ease;
+}
+.card-toggle:hover{ text-decoration-color: currentColor; color: var(--accent-dark); }
+.card-toggle:focus-visible{ outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.card:hover .card-toggle{ color: var(--on-block); text-decoration-color: var(--on-block-50); }
+.card-toggle-chevron{ width: 14px; height: 14px; transition: transform 200ms ease; }
+.card.is-expanded .card-toggle-chevron{ transform: rotate(180deg); }
+.card .accordion-panel-inner{ padding-top: 18px; }
+.card .accordion-panel-inner .link-underline{ display: inline-block; margin-top: 14px; }
+.card:hover .accordion-panel-inner .link-underline{ color: var(--on-block); text-decoration-color: var(--on-block-50); }
+
+/* ---------- Accordion (shared: service cards, documents list) ---------- */
+.accordion-panel{
+  display: grid;
+  grid-template-rows: minmax(0, 0fr);
+  transition: grid-template-rows 300ms ease;
+}
+.accordion-panel-inner{ overflow: hidden; min-height: 0; }
+.is-expanded > .accordion-panel{ grid-template-rows: minmax(0, 1fr); }
+@media (prefers-reduced-motion: reduce){
+  .accordion-panel{ transition: none; }
+}
 
 /* ---------- Testimonials ---------- */
 .testi-grid{
@@ -794,6 +851,13 @@ hr.hairline{
 @media (min-width: 1024px){
   .footer-grid{ grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
 }
+.footer-contact-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-contact-row a{ text-decoration: none; }
+.footer-contact-row a:hover{ color: var(--accent-dark); }
 .footer-nav{
   display: grid;
   gap: 10px;
@@ -875,7 +939,7 @@ hr.hairline{
 
 .cta-band{
   text-align: left;
-  padding: 48px var(--pad);
+  padding: 56px 40px;
   background: var(--block);
   color: var(--on-block);
   border-radius: var(--r-lg);
@@ -883,6 +947,9 @@ hr.hairline{
 }
 @media (min-width: 641px){
   .cta-band{ text-align: center; }
+}
+@media (min-width: 1024px){
+  .cta-band{ padding: 64px 56px; }
 }
 .cta-band h2{ margin-bottom: 20px; color: var(--on-block); }
 .cta-band p{ max-width: 50ch; margin-left: auto; margin-right: auto; margin-bottom: 28px; color: var(--on-block-70); }
@@ -907,6 +974,14 @@ hr.hairline{
   box-shadow: var(--shadow-md-hover);
   transform: translateY(-3px);
 }
+.program-card-head{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.program-card-head .icon{ margin-top: 2px; }
+.program-card-head h3{ margin-bottom: 0; }
 .program-card h3{ margin-bottom: 14px; }
 .program-card p{ font-size: 16px; margin-bottom: 18px; color: var(--ink-70); }
 .program-meta{
@@ -981,6 +1056,56 @@ hr.hairline{
 }
 .note-band h3{ margin-bottom: 10px; }
 
+/* ---------- Contacts page ---------- */
+.contacts-wrap{ max-width: 640px; }
+.contacts-list{
+  display: grid;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.contact-card{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 26px;
+  background: var(--paper-2);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+a.contact-card:hover{
+  box-shadow: var(--shadow-md-hover);
+  transform: translateY(-2px);
+}
+.contact-card-static{ cursor: default; }
+.contact-card-icon{
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-card-label{
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--ink-50);
+  margin-bottom: 4px;
+}
+.contact-card-value{
+  display: block;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
 /* ---------- Legal page ---------- */
 .legal-body{
   font-family: var(--font-body);
@@ -1025,6 +1150,41 @@ hr.hairline{
 .legal-section ul, .legal-section ol{ margin: 0 0 12px; padding-left: 22px; color: var(--ink-70); font-size: 15.5px; }
 .legal-section li{ margin-bottom: 6px; }
 .legal-section .doc-placeholder{ color: var(--ink-50); font-style: italic; }
+
+.legal-section .doc-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.doc-item{
+  background: var(--paper-2);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.doc-trigger{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+}
+.doc-trigger:focus-visible{ outline: 3px solid var(--accent); outline-offset: -3px; }
+.doc-chevron{ color: var(--accent); transition: transform 200ms ease; }
+.is-expanded .doc-chevron{ transform: rotate(180deg); }
+.doc-item .accordion-panel-inner{ padding: 0 20px 18px; }
+.doc-item .accordion-panel-inner p{ font-size: 15px; color: var(--ink-70); margin: 0; }
 
 .skip-link{
   position: absolute;
