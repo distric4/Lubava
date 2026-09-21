@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Lora:ital,wght@1,500;1,600&subset=cyrillic&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260922b">
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -46,11 +46,10 @@
             <a class="btn btn-outline-onblock" href="#metod">Как проходит консультация</a>
           </div>
         </div>
-        <!-- TODO: заменить на реальное фото автора, см. img.hero-photo-placeholder -->
         <div class="hero-photo hero-enter">
-          <div class="hero-photo-placeholder" role="img" aria-label="Портрет Любавы Князевой (фото уточняется)">
-            <div class="hero-photo-glyph" aria-hidden="true">Л</div>
-            <div class="hero-photo-caption">Любава Князева — фото скоро</div>
+          <div class="hero-photo-frame">
+            <img src="images/lyubava-portrait.webp" alt="Любава Князева — психолог, психотравматолог" width="1280" height="1920" fetchpriority="high">
+            <div class="hero-photo-caption">Любава Князева, психолог</div>
           </div>
         </div>
       </div>
@@ -107,6 +106,10 @@
         <div class="method-intro">
           <h2>Песочная терапия</h2>
           <p>Клиент работает с песком и небольшими фигурками в специальном лотке — и через получившуюся картину проявляется то, что трудно облечь в слова напрямую. Я не толкую и не ставлю диагнозы по песочнице — я задаю вопросы, которые помогают услышать себя и самому найти нужное решение. Метод мягкий и тактильный, поэтому подходит и для тяжёлых тем — травмы, потери, горя, — и для детей, которым сложно разговаривать о переживаниях напрямую.</p>
+          <div class="photo-pair">
+            <figure class="photo-tile" style="--ar:4/3"><img src="images/sand-tray-palms.webp" alt="Песочница с деревьями, водой и фигурками — пример композиции клиента" loading="lazy"></figure>
+            <figure class="photo-tile" style="--ar:4/3"><img src="images/sand-tray-figures.webp" alt="Песочная композиция с фигурками людей и животных" loading="lazy"></figure>
+          </div>
         </div>
         <div class="method-steps">
           <div class="method-step">
@@ -131,6 +134,10 @@
 
   <section class="bg-paper">
     <div class="container">
+      <div class="about-split">
+      <figure class="photo-card">
+        <img src="images/lyubava-portrait.webp" alt="Любава Князева, психолог — портрет" width="1280" height="1920" loading="lazy">
+      </figure>
       <div class="about-wrap">
         <h2>Любава Князева</h2>
         <p style="margin-top:24px;">Меня зовут Любава Никифоровна Князева. Я психолог и психотравматолог, много лет работаю в юнгианской песочной терапии — методе, который позволяет говорить о сложном без давления и лишних слов.</p>
@@ -146,6 +153,7 @@
           <li>Очно и онлайн</li>
         </ul>
         <a class="btn btn-outline-block" href="obo-mne.html">Подробнее обо мне и образовании</a>
+      </div>
       </div>
     </div>
   </section>
@@ -166,7 +174,7 @@
           <div class="accordion-panel" id="card-panel-1" role="region" aria-labelledby="card-trigger-1">
             <div class="accordion-panel-inner">
               <p>Работаем с тем, что для вас сейчас важнее всего: разобраться в чувствах, найти выход из тупика, справиться с тревогой или принять решение, которое давно откладывается. Использую полимодальный подход — беру методы из разных направлений психотерапии (в том числе песочную терапию), а не подгоняю ваш запрос под одну схему. Первая встреча — это всегда разговор о том, что привело вас, и совместный выбор формата дальнейшей работы.</p>
-              <a class="link-underline card-link" href="#zapis">Записаться на эту консультацию</a>
+              <a class="link-underline card-link" href="#zapis" data-service="Индивидуальные консультации">Записаться на эту консультацию</a>
             </div>
           </div>
         </div>
@@ -182,7 +190,7 @@
           <div class="accordion-panel" id="card-panel-2" role="region" aria-labelledby="card-trigger-2">
             <div class="accordion-panel-inner">
               <p>Работаю и с парой или семьёй целиком, и по отдельности с каждым участником конфликта — в зависимости от ситуации подберём подходящий формат. Помогаю увидеть конфликт со стороны, услышать друг друга и найти решение, которое не требует, чтобы кто-то один был «неправ». Отдельно работаю с детско-родительскими сложностями: непониманием, протестным поведением, трудностями переходного возраста.</p>
-              <a class="link-underline card-link" href="#zapis">Записаться на эту консультацию</a>
+              <a class="link-underline card-link" href="#zapis" data-service="Семейные и детско-родительские консультации">Записаться на эту консультацию</a>
             </div>
           </div>
         </div>
@@ -198,7 +206,7 @@
           <div class="accordion-panel" id="card-panel-3" role="region" aria-labelledby="card-trigger-3">
             <div class="accordion-panel-inner">
               <p>Юнгианская песочная терапия — метод, в котором я работаю много лет и которому обучаю других психологов. Клиент создаёт композицию из песка и фигурок, а через неё проявляется то, что сложно облечь в слова напрямую. Подходит как самостоятельный метод и как часть индивидуальной консультации — если в разговоре тема буксует, песочница часто помогает найти новый угол зрения. Хорошо работает и с детьми, и со взрослыми.</p>
-              <a class="link-underline card-link" href="#zapis">Записаться на эту консультацию</a>
+              <a class="link-underline card-link" href="#zapis" data-service="Песочная терапия">Записаться на эту консультацию</a>
             </div>
           </div>
         </div>
@@ -206,20 +214,38 @@
     </div>
   </section>
 
+  <section class="bg-paper" id="kabinet">
+    <div class="container">
+      <div class="gallery-head">
+        <h2>Где проходят консультации</h2>
+        <p class="section-lede">Очные встречи проходят в кабинете в Новосибирске (ул. Высокогорная 2-я, 1/1, офис 302). Для песочной терапии здесь есть песочницы и большая коллекция фигурок — животные, герои сказок, предметы быта: из них клиент выстраивает свою композицию.</p>
+      </div>
+      <div class="photo-gallery photo-gallery--4">
+        <figure class="photo-tile" style="--ar:16/10"><img src="images/cabinet-1.webp" alt="Кабинет психолога с полками, диваном и коллекцией фигурок" loading="lazy"></figure>
+        <figure class="photo-tile" style="--ar:16/10"><img src="images/cabinet-2.webp" alt="Стеллаж с фигурками для песочной терапии" loading="lazy"></figure>
+        <figure class="photo-tile" style="--ar:16/10"><img src="images/cabinet-3.webp" alt="Общий вид кабинета" loading="lazy"></figure>
+        <figure class="photo-tile" style="--ar:16/10"><img src="images/cabinet-figures.webp" alt="Фигурки для песочной терапии на фоне картины" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-block" id="obuchenie">
     <div class="container">
       <div class="teach-wrap">
-        <div>
+        <div class="teach-main">
           <h2>Обучение для психологов</h2>
-          <p style="margin-top:16px;max-width:44ch;">Помимо частных консультаций, я обучаю других специалистов песочной терапии — веду сертифицированные программы Ассоциации песочной терапии (АПТ) и официально преподаю на международном уровне ОППЛ.</p>
+          <p class="teach-lede">Помимо частных консультаций, я обучаю других специалистов песочной терапии — веду сертифицированные программы Ассоциации песочной терапии (АПТ) и официально преподаю на международном уровне ОППЛ.</p>
+          <ul class="teach-list">
+            <li class="teach-item"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11.5V17c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg><span>Базовый курс песочной терапии</span></li>
+            <li class="teach-item"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11.5V17c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg><span>Работа с травмой методом Питера Левина</span></li>
+            <li class="teach-item"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11.5V17c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg><span>Песочная терапия в работе с детьми и семьёй</span></li>
+          </ul>
+          <a class="btn btn-outline-onblock" href="programmy-obucheniya.html">Все программы обучения</a>
         </div>
-        <div class="teach-list">
-          <div class="teach-item">Базовый курс песочной терапии</div>
-          <div class="teach-item">Работа с травмой методом Питера Левина</div>
-          <div class="teach-item">Песочная терапия в работе с детьми и семьёй</div>
-        </div>
+        <figure class="teach-photo">
+          <img src="images/apt-community.webp" alt="Участники профессионального мероприятия Ассоциации песочной терапии" loading="lazy">
+        </figure>
       </div>
-      <a class="btn btn-outline-onblock" href="programmy-obucheniya.html" style="margin-top:32px;">Все программы обучения</a>
     </div>
   </section>
 
@@ -261,7 +287,11 @@
             </div>
             <div class="field">
               <label for="f-phone">Телефон*</label>
-              <input type="tel" id="f-phone" name="phone" required autocomplete="tel">
+              <input type="tel" id="f-phone" name="phone" required>
+            </div>
+            <div class="field">
+              <label for="f-service">Услуга или программа</label>
+              <select id="f-service" name="service"></select>
             </div>
             <div class="field">
               <label>Формат консультации</label>
@@ -313,6 +343,6 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=20260922b"></script>
 </body>
 </html>
