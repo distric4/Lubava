@@ -1715,9 +1715,6 @@ html.popup-open{ overflow: hidden; }
   background: #E4E8ED;
   color: var(--ink-70);
   font-size: 13px;
-  max-height: 44px;
-  overflow: hidden;
-  transition: max-height 300ms ease;
 }
 .site-header .topbar .container{
   padding-top: 10px;
@@ -1728,10 +1725,12 @@ html.popup-open{ overflow: hidden; }
 .topbar-links{ display: flex; align-items: center; gap: 28px; }
 .topbar-links a{ color: var(--ink-70); text-decoration: none; white-space: nowrap; transition: color 150ms ease; }
 .topbar-links a:hover{ color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
-.site-header.topbar-hidden .topbar{ max-height: 0; }
+.site-header{ transition: transform 300ms ease; }
+.site-header.topbar-hidden{ transform: translateY(calc(-1 * var(--topbar-h, 40px))); }
 .nav-more{ display: none; }
 @media (max-width: 1279px){
   .topbar{ display: none; }
+  .site-header.topbar-hidden{ transform: none; }
   .nav-links{
     width: min(360px, 100vw);
     justify-content: flex-start;

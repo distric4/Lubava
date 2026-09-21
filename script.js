@@ -42,11 +42,15 @@ document.addEventListener('DOMContentLoaded', function () {
   (function () {
     var header = document.querySelector('.site-header');
     if (!header || !header.querySelector('.topbar')) return;
+    var bar = header.querySelector('.topbar');
+    function measure() { header.style.setProperty('--topbar-h', bar.offsetHeight + 'px'); }
+    measure();
+    window.addEventListener('resize', measure);
     var lastY = window.scrollY;
     window.addEventListener('scroll', function () {
       var y = window.scrollY;
       if (y <= 10 || (y < lastY - 4 && y < window.innerHeight)) header.classList.remove('topbar-hidden');
-      else if (y > lastY + 4 && y > 80) header.classList.add('topbar-hidden');
+      else if (y > lastY + 4 && y > 120) header.classList.add('topbar-hidden');
       lastY = y;
     }, { passive: true });
   })();
