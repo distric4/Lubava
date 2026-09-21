@@ -114,6 +114,54 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Photo lightbox: click a photo to view it larger ---------- */
+  (function () {
+    var sel = '.photo-tile img, .photo-banner img, .photo-card img, .teach-photo img, .hero-photo-frame img, .method-photo img';
+    var imgs = Array.prototype.slice.call(document.querySelectorAll(sel));
+    if (!imgs.length || typeof HTMLDialogElement === 'undefined') return;
+    var box = document.createElement('dialog');
+    box.className = 'lightbox';
+    box.setAttribute('aria-label', 'Просмотр фотографии');
+    box.innerHTML = '<button class="lb-close" type="button" aria-label="Закрыть">&times;</button>' +
+      '<button class="lb-nav lb-prev" type="button" aria-label="Предыдущее фото">&#8249;</button>' +
+      '<img class="lb-img" alt="">' +
+      '<button class="lb-nav lb-next" type="button" aria-label="Следующее фото">&#8250;</button>' +
+      '<p class="lb-cap"></p>';
+    document.body.appendChild(box);
+    var big = box.querySelector('.lb-img'), cap = box.querySelector('.lb-cap');
+    var group = [], idx = 0;
+    function show(i) {
+      idx = (i + group.length) % group.length;
+      var im = group[idx];
+      big.src = im.currentSrc || im.src;
+      big.alt = im.alt || '';
+      cap.textContent = im.alt || '';
+      box.classList.toggle('lb-single', group.length < 2);
+    }
+    function open(im) {
+      var scope = im.closest('.photo-gallery') || im.closest('section');
+      group = imgs.filter(function (x) { return scope && scope.contains(x); });
+      if (group.indexOf(im) < 0) group = [im];
+      show(group.indexOf(im));
+      if (!box.open) box.showModal();
+      document.documentElement.classList.add('popup-open');
+    }
+    imgs.forEach(function (im) {
+      im.classList.add('zoomable');
+      im.addEventListener('click', function () { open(im); });
+    });
+    box.querySelector('.lb-close').addEventListener('click', function () { box.close(); });
+    box.querySelector('.lb-prev').addEventListener('click', function () { show(idx - 1); });
+    box.querySelector('.lb-next').addEventListener('click', function () { show(idx + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) box.close(); });
+    box.addEventListener('close', function () { document.documentElement.classList.remove('popup-open'); });
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
+
+
   /* ---------- Booking: phone mask, validation, two forms in one popup ---------- */
   // Куда отправлять заявки. Укажите адрес формы (например Formspree:
   // 'https://formspree.io/f/xxxxxxx') — тогда заявки будут приходить сразу на почту.
