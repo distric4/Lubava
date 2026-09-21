@@ -71,54 +71,73 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- Booking: phone mask, validation, popup ---------- */
+
+  /* ---------- Scroll reveal (subtle, one-time) ---------- */
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var revealSel = '.fact, .request-item, .method-step, .card, .testi-card, .program-card, .book-feature, .book-mini, .photo-tile, .photo-banner, .photo-card, .teach-item, .contact-card, .edu-group, .ethics-item, .doc-item, .cta-band, .note-band, .gallery-head, .method-intro, .about-wrap, .teach-main, .teach-photo, .form-wrap > div';
+    var revealEls = Array.prototype.slice.call(document.querySelectorAll(revealSel));
+    var vh = window.innerHeight;
+    var revealIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('is-in');
+        revealIo.unobserve(el);
+        window.setTimeout(function () {
+          el.removeAttribute('data-reveal');
+          el.classList.remove('is-in');
+          el.style.removeProperty('--d');
+        }, 1400);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > 0) return;
+      if (el.parentElement && el.parentElement.closest('[data-reveal]')) return;
+      var idx = Array.prototype.indexOf.call(el.parentElement.children, el);
+      el.style.setProperty('--d', Math.min(idx, 6) * 70 + 'ms');
+      el.setAttribute('data-reveal', '');
+      revealIo.observe(el);
+    });
+  }
+
+  /* ---------- Booking: phone mask, validation, two forms in one popup ---------- */
   // Куда отправлять заявки. Укажите адрес формы (например Formspree:
   // 'https://formspree.io/f/xxxxxxx') — тогда заявки будут приходить сразу на почту.
   // Пока адрес пустой, вместо этого открывается готовое письмо на CONTACT_EMAIL.
   var FORM_ENDPOINT = '';
   var CONTACT_EMAIL = 'klln@mail.ru';
   var CONTACT_PHONE = '8 (913) 914-33-62';
+  var POLICY_LINK = '<a href="documents/privacy-policy.docx" target="_blank" rel="noopener">политикой конфиденциальности</a>';
 
-  var SERVICE_GROUPS = [
-    { label: 'Консультации', items: [
-      'Индивидуальные консультации',
-      'Семейные и детско-родительские консультации',
-      'Песочная терапия'
-    ] },
-    { label: 'Программы обучения', items: [
-      'Песочная терапия как инструмент жизненных изменений. Базовый курс плюс',
-      'Базовый курс интегративной песочной терапии',
-      'Разрешение травмы. Интеграция методов песочной терапии и соматического переживания Питера Левина',
-      'Песочная терапия в работе с детьми',
-      'Песочная терапия в работе с семьёй',
-      'В поисках золотой тени',
-      'Решение психосоматических проблем в психологической песочнице',
-      'Шёпот рода'
-    ] }
+  var PROGRAMS = [
+    'Песочная терапия как инструмент жизненных изменений. Базовый курс плюс',
+    'Базовый курс интегративной песочной терапии',
+    'Разрешение травмы. Интеграция методов песочной терапии и соматического переживания Питера Левина',
+    'Песочная терапия в работе с детьми',
+    'Песочная терапия в работе с семьёй',
+    'В поисках золотой тени',
+    'Решение психосоматических проблем в психологической песочнице',
+    'Шёпот рода'
   ];
 
   function isProgram(name) {
-    return SERVICE_GROUPS[1].items.indexOf(name) !== -1;
+    return PROGRAMS.indexOf(name) !== -1;
   }
 
-  function fillServiceSelect(select, selected) {
+  function fillProgramSelect(select, selected) {
     select.textContent = '';
     var def = document.createElement('option');
     def.value = '';
-    def.textContent = 'Пока не определился(-ась) — подскажите';
+    def.textContent = 'Выберите программу';
     select.appendChild(def);
     var found = false;
-    SERVICE_GROUPS.forEach(function (group) {
-      var og = document.createElement('optgroup');
-      og.label = group.label;
-      group.items.forEach(function (name) {
-        var o = document.createElement('option');
-        o.value = name;
-        o.textContent = name;
-        if (name === selected) { o.selected = true; found = true; }
-        og.appendChild(o);
-      });
-      select.appendChild(og);
+    PROGRAMS.forEach(function (name) {
+      var o = document.createElement('option');
+      o.value = name;
+      o.textContent = name;
+      if (name === selected) { o.selected = true; found = true; }
+      select.appendChild(o);
     });
     if (selected && !found) {
       var extra = document.createElement('option');
@@ -178,7 +197,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var formatted = formatPhone(digits);
       input.value = formatted;
       prevDigits = digits;
-      // restore caret next to the same digit
       var pos = formatted.length;
       if (digitsBeforeCaret < digits.length) {
         var seen = 0;
@@ -215,9 +233,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function validateForm(form) {
     var first = null;
     function fail(el, msg) { setFieldError(el, msg); if (!first) first = el; }
+    var mode = form.getAttribute('data-mode');
 
     var name = form.elements['name'];
-    if (name.value.trim().length < 2) fail(name, 'Укажите, как к вам обращаться');
+    if (name.value.trim().length < 2) fail(name, mode === 'training' ? 'Укажите фамилию, имя и отчество' : 'Укажите, как к вам обращаться');
     else setFieldError(name, '');
 
     var phone = form.elements['phone'];
@@ -225,6 +244,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (digits.length <= 1) fail(phone, 'Укажите телефон для связи');
     else if (digits.length < 11) fail(phone, 'Введите номер полностью: +7 (XXX) XXX-XX-XX');
     else setFieldError(phone, '');
+
+    var email = form.elements['email'];
+    if (email) {
+      var v = email.value.trim();
+      if (!v) fail(email, 'Укажите почту');
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) fail(email, 'Проверьте адрес почты, например name@mail.ru');
+      else setFieldError(email, '');
+    }
+
+    if (mode === 'training') {
+      var program = form.elements['service'];
+      if (!program.value) fail(program, 'Выберите программу');
+      else setFieldError(program, '');
+    }
 
     var consent = form.elements['consent'];
     if (!consent.checked) fail(consent, 'Нужно согласие на обработку персональных данных');
@@ -237,12 +270,16 @@ document.addEventListener('DOMContentLoaded', function () {
   function collectData(form) {
     var fmt = form.querySelector('input[name="format"]:checked');
     var svc = form.elements['service'];
+    var email = form.elements['email'];
+    var msg = form.elements['message'];
     return {
+      type: form.getAttribute('data-mode') === 'training' ? 'Обучение' : 'Консультация',
       name: form.elements['name'].value.trim(),
       phone: formatPhone(phoneDigits(form.elements['phone'].value)),
+      email: email ? email.value.trim() : '',
       service: svc ? svc.value : '',
       format: fmt ? fmt.value : '',
-      message: form.elements['message'].value.trim(),
+      message: msg ? msg.value.trim() : '',
       page: document.title
     };
   }
@@ -258,23 +295,32 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'sent';
       });
     }
-    var body = [
+    var lines = [
+      'Тип заявки: ' + data.type,
       'Имя: ' + data.name,
-      'Телефон: ' + data.phone,
-      'Услуга / программа: ' + (data.service || 'не выбрана'),
-      'Формат: ' + data.format,
-      'Сообщение: ' + (data.message || '—')
-    ].join('\n');
-    var subject = 'Заявка с сайта: ' + (data.service || 'консультация');
-    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      'Телефон: ' + data.phone
+    ];
+    if (data.email) lines.push('Почта: ' + data.email);
+    lines.push((data.type === 'Обучение' ? 'Программа: ' : 'Услуга: ') + (data.service || 'не выбрана'));
+    if (data.format) lines.push('Формат: ' + data.format);
+    if (data.message) lines.push('Сообщение: ' + data.message);
+    var subject = 'Заявка с сайта: ' + (data.service || data.type.toLowerCase());
+    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
     return Promise.resolve('mailto');
   }
 
+  function successOf(form) {
+    var n = form.nextElementSibling;
+    return n && n.classList.contains('form-success') ? n : null;
+  }
+
   function initBookingForm(form) {
-    var phone = form.elements['phone'];
-    attachPhoneMask(phone);
-    var svcSelect = form.elements['service'];
-    if (svcSelect && !svcSelect.options.length) fillServiceSelect(svcSelect, '');
+    if (!form.getAttribute('data-mode')) form.setAttribute('data-mode', 'consult');
+    attachPhoneMask(form.elements['phone']);
+    var btn = form.querySelector('button[type="submit"]');
+    btn.setAttribute('data-label', btn.textContent);
+    var program = form.elements['service'];
+    if (program && program.tagName === 'SELECT' && !program.options.length) fillProgramSelect(program, '');
 
     Array.prototype.forEach.call(form.querySelectorAll('input, textarea, select'), function (el) {
       el.addEventListener('input', function () { setFieldError(el, ''); });
@@ -285,11 +331,9 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       if (!validateForm(form)) return;
 
-      var btn = form.querySelector('button[type="submit"]');
-      var btnText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Отправляем…';
-      var success = form.parentNode.querySelector('.form-success');
+      var success = successOf(form);
 
       sendApplication(collectData(form)).then(function (mode) {
         form.classList.add('is-hidden');
@@ -303,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }).catch(function () {
         btn.disabled = false;
-        btn.textContent = btnText;
+        btn.textContent = btn.getAttribute('data-label');
         var err = form.querySelector('.form-error');
         if (!err) {
           err = document.createElement('div');
@@ -321,43 +365,55 @@ document.addEventListener('DOMContentLoaded', function () {
     form.classList.remove('is-hidden');
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = false;
-    btn.textContent = 'Отправить заявку';
+    btn.textContent = btn.getAttribute('data-label') || btn.textContent;
     Array.prototype.forEach.call(form.querySelectorAll('.field-error'), function (n) { n.textContent = ''; });
     Array.prototype.forEach.call(form.querySelectorAll('.is-invalid'), function (n) { n.classList.remove('is-invalid'); });
     var formErr = form.querySelector('.form-error');
     if (formErr) formErr.textContent = '';
-    var success = form.parentNode.querySelector('.form-success');
+    var success = successOf(form);
     if (success) { success.classList.remove('is-visible'); success.textContent = ''; }
   }
 
-  /* --- popup --- */
+  /* --- popup with two forms: consultation / training --- */
   var popup = null;
   var lastFocus = null;
 
-  function popupFormHtml() {
+  function consultFormHtml() {
     return '' +
-      '<form class="booking-form" novalidate>' +
-        '<div class="field"><label for="p-name">Имя*</label>' +
-          '<input type="text" id="p-name" name="name" required autocomplete="name"></div>' +
-        '<div class="field"><label for="p-phone">Телефон*</label>' +
-          '<input type="tel" id="p-phone" name="phone" required></div>' +
-        '<div class="field"><label for="p-service">Услуга или программа</label>' +
-          '<select id="p-service" name="service"></select></div>' +
+      '<form class="booking-form" data-mode="consult" novalidate>' +
+        '<input type="hidden" name="service" value="">' +
+        '<div class="field"><label for="pc-name">Имя*</label>' +
+          '<input type="text" id="pc-name" name="name" required autocomplete="name"></div>' +
+        '<div class="field"><label for="pc-phone">Телефон*</label>' +
+          '<input type="tel" id="pc-phone" name="phone" required></div>' +
         '<div class="field"><label>Формат</label><div class="radio-row">' +
           '<label><input type="radio" name="format" value="Очно" checked> Очно</label>' +
           '<label><input type="radio" name="format" value="Онлайн"> Онлайн</label></div></div>' +
-        '<div class="field"><label for="p-message">Сообщение</label>' +
-          '<textarea id="p-message" name="message" placeholder="Коротко о вашем запросе — необязательно"></textarea></div>' +
-        '<div class="consent-row"><input type="checkbox" id="p-consent" name="consent" required>' +
-          '<label for="p-consent">Отправляя форму, вы соглашаетесь на обработку персональных данных в соответствии с политикой конфиденциальности.</label></div>' +
+        '<div class="field"><label for="pc-message">Сообщение</label>' +
+          '<textarea id="pc-message" name="message" placeholder="Коротко о вашем запросе — необязательно"></textarea></div>' +
+        '<div class="consent-row"><input type="checkbox" id="pc-consent" name="consent" required>' +
+          '<label for="pc-consent">Отправляя форму, вы соглашаетесь на обработку персональных данных в соответствии с ' + POLICY_LINK + '.</label></div>' +
         '<button type="submit" class="btn btn-primary">Отправить заявку</button>' +
       '</form>' +
       '<div class="form-success" role="status"></div>';
   }
 
-  function updatePopupTitle() {
-    var svc = popup.querySelector('select[name="service"]').value;
-    popup.querySelector('#popup-title').textContent = isProgram(svc) ? 'Запись на обучение' : 'Запись на консультацию';
+  function trainingFormHtml() {
+    return '' +
+      '<form class="booking-form" data-mode="training" novalidate>' +
+        '<div class="field"><label for="pt-name">ФИО*</label>' +
+          '<input type="text" id="pt-name" name="name" required autocomplete="name" placeholder="Фамилия Имя Отчество"></div>' +
+        '<div class="field"><label for="pt-phone">Телефон*</label>' +
+          '<input type="tel" id="pt-phone" name="phone" required></div>' +
+        '<div class="field"><label for="pt-email">Почта*</label>' +
+          '<input type="email" id="pt-email" name="email" required autocomplete="email" placeholder="name@mail.ru"></div>' +
+        '<div class="field"><label for="pt-program">Программа*</label>' +
+          '<select id="pt-program" name="service"></select></div>' +
+        '<div class="consent-row"><input type="checkbox" id="pt-consent" name="consent" required>' +
+          '<label for="pt-consent">Отправляя форму, вы соглашаетесь на обработку персональных данных в соответствии с ' + POLICY_LINK + '.</label></div>' +
+        '<button type="submit" class="btn btn-primary">Записаться на обучение</button>' +
+      '</form>' +
+      '<div class="form-success" role="status"></div>';
   }
 
   function buildPopup() {
@@ -369,9 +425,11 @@ document.addEventListener('DOMContentLoaded', function () {
         '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
       '</button>' +
       '<div class="popup-body">' +
-        '<h2 id="popup-title">Запись на консультацию</h2>' +
-        '<p class="popup-lede">Оставьте контакты — свяжусь с вами и подберу удобное время.</p>' +
-        popupFormHtml() +
+        '<h2 id="popup-title"></h2>' +
+        '<p class="popup-lede"></p>' +
+        '<p class="popup-chosen" hidden></p>' +
+        consultFormHtml() +
+        trainingFormHtml() +
       '</div>';
     document.body.appendChild(dlg);
 
@@ -381,19 +439,39 @@ document.addEventListener('DOMContentLoaded', function () {
       document.documentElement.classList.remove('popup-open');
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     });
-    var form = dlg.querySelector('form');
-    initBookingForm(form);
-    form.elements['service'].addEventListener('change', function () { updatePopupTitle(); });
+    Array.prototype.forEach.call(dlg.querySelectorAll('form'), initBookingForm);
     return dlg;
   }
 
-  function openPopup(service) {
+  function openPopup(service, mode) {
     if (!popup) popup = buildPopup();
     lastFocus = document.activeElement;
-    var form = popup.querySelector('form');
-    resetBookingForm(form);
-    fillServiceSelect(form.elements['service'], service || '');
-    updatePopupTitle();
+    mode = mode || (isProgram(service) ? 'training' : 'consult');
+    popup.setAttribute('data-mode', mode);
+
+    Array.prototype.forEach.call(popup.querySelectorAll('form'), function (f) {
+      var active = f.getAttribute('data-mode') === mode;
+      f.hidden = !active;
+      var s = successOf(f);
+      if (s) s.hidden = !active;
+      if (active) resetBookingForm(f);
+    });
+
+    var form = popup.querySelector('form[data-mode="' + mode + '"]');
+    var chosen = popup.querySelector('.popup-chosen');
+    if (mode === 'training') {
+      popup.querySelector('#popup-title').textContent = 'Запись на обучение';
+      popup.querySelector('.popup-lede').textContent = 'Оставьте контакты и выберите программу — свяжусь с вами и расскажу о ближайшем наборе.';
+      fillProgramSelect(form.elements['service'], service || '');
+      chosen.hidden = true;
+    } else {
+      popup.querySelector('#popup-title').textContent = 'Запись на консультацию';
+      popup.querySelector('.popup-lede').textContent = 'Оставьте контакты — свяжусь с вами и подберу удобное время.';
+      form.elements['service'].value = service || '';
+      chosen.hidden = !service;
+      chosen.textContent = service ? 'Вы записываетесь: ' + service : '';
+    }
+
     if (typeof popup.showModal === 'function') {
       if (!popup.open) popup.showModal();
     } else {
@@ -416,10 +494,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var trigger = e.target.closest('a[href$="#zapis"], [data-popup]');
     if (!trigger) return;
     e.preventDefault();
-    openPopup(trigger.getAttribute('data-service') || '');
+    openPopup(trigger.getAttribute('data-service') || '', trigger.getAttribute('data-mode') || '');
   });
 
-  // inline form at the bottom of the home page shares the same logic
+  // inline consultation form at the bottom of the home page shares the same logic
   var inlineForm = document.getElementById('booking-form');
   if (inlineForm) initBookingForm(inlineForm);
 });
