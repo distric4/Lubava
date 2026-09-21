@@ -38,6 +38,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Top bar: hide on scroll down; back only within the first screen ---------- */
+  (function () {
+    var header = document.querySelector('.site-header');
+    if (!header || !header.querySelector('.topbar')) return;
+    var lastY = window.scrollY;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      if (y <= 10 || (y < lastY - 4 && y < window.innerHeight)) header.classList.remove('topbar-hidden');
+      else if (y > lastY + 4 && y > 80) header.classList.add('topbar-hidden');
+      lastY = y;
+    }, { passive: true });
+  })();
+
   /* ---------- Hero entrance (one-time on load, not per-scroll) ---------- */
   var heroEnterEls = document.querySelectorAll('.hero-enter');
   if (heroEnterEls.length) {
@@ -108,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var FORM_ENDPOINT = '';
   var CONTACT_EMAIL = 'klln@mail.ru';
   var CONTACT_PHONE = '8 (913) 914-33-62';
-  var POLICY_LINK = '<a href="documents/privacy-policy.docx" target="_blank" rel="noopener">политикой конфиденциальности</a>';
+  var POLICY_LINK = '<a href="politika-konfidencialnosti.html" target="_blank" rel="noopener">политикой конфиденциальности</a>';
 
   var PROGRAMS = [
     'Песочная терапия как инструмент жизненных изменений. Базовый курс плюс',
