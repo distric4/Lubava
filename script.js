@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<div class="field"><label for="pc-message">Сообщение</label>' +
           '<textarea id="pc-message" name="message" placeholder="Коротко о вашем запросе — необязательно"></textarea></div>' +
         '<div class="consent-row"><input type="checkbox" id="pc-consent" name="consent" required>' +
-          '<label for="pc-consent">Отправляя форму, вы соглашаетесь на обработку персональных данных в соответствии с ' + POLICY_LINK + '.</label></div>' +
+          '<label for="pc-consent">Я даю <a href="soglasie-obrabotka-dannyh.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="politika-konfidencialnosti.html" target="_blank" rel="noopener">политику конфиденциальности</a>.</label></div>' +
         '<button type="submit" class="btn btn-primary">Отправить заявку</button>' +
       '</form>' +
       '<div class="form-success" role="status"></div>';
@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<div class="field"><label for="pt-program">Программа*</label>' +
           '<select id="pt-program" name="service"></select></div>' +
         '<div class="consent-row"><input type="checkbox" id="pt-consent" name="consent" required>' +
-          '<label for="pt-consent">Отправляя форму, вы соглашаетесь на обработку персональных данных в соответствии с ' + POLICY_LINK + '.</label></div>' +
+          '<label for="pt-consent">Я даю <a href="soglasie-obrabotka-dannyh.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="politika-konfidencialnosti.html" target="_blank" rel="noopener">политику конфиденциальности</a>.</label></div>' +
         '<button type="submit" class="btn btn-primary">Записаться на обучение</button>' +
       '</form>' +
       '<div class="form-success" role="status"></div>';
