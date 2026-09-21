@@ -1865,3 +1865,18 @@ img.zoomable{ cursor: zoom-in; }
   .lb-next{ right: calc(50% - 60px); }
   .lb-img{ max-height: 70vh; }
 }
+
+/* ---------- Glass captions on photos ---------- */
+.hero-photo-caption,
+.photo-tile figcaption,
+.photo-banner figcaption{
+  background: linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,.10));
+  border: 1px solid rgba(255,255,255,.45);
+  box-shadow: 0 8px 24px rgba(10,25,45,.22), inset 0 1px 0 rgba(255,255,255,.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  backdrop-filter: blur(14px) saturate(1.5);
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(10,25,45,.45);
+}
+.hero-photo-caption{ padding: 11px 20px; font-size: 13px; }
