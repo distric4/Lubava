@@ -1891,3 +1891,10 @@ img.zoomable{ cursor: zoom-in; }
 @media (min-width: 1024px){
   .teach-gallery{ align-content: start; }
 }
+
+/* ---------- Hero: secondary "training" callout on dark hero ---------- */
+.hero-statement-onblock{
+  color: var(--on-block);
+  margin-top: 32px;
+}
+.hero-sub-onblock{ color: var(--on-block-70); }
