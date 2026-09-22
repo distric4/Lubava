@@ -42,7 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
+      // The page has `scroll-behavior: smooth`, which window.scrollTo()
+      // picks up too — so restoring the saved position animated like a
+      // jump to an anchor link instead of snapping back instantly.
+      var root = document.documentElement;
+      var prevBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
       window.scrollTo(0, lockedScrollY);
+      root.style.scrollBehavior = prevBehavior;
     }
     burger.addEventListener('click', function () {
       var isOpen = navLinks.classList.toggle('is-open');
