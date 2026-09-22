@@ -79,9 +79,12 @@ h1, h2, h3, h4{
   margin: 0;
   font-weight: 800;
   text-transform: uppercase;
+  /* Whole words wrap normally; a word only ever breaks mid-word (no
+     hyphen mark inserted) as an absolute last resort, when it's too
+     wide to fit the line on its own — never routine hyphenation. */
   overflow-wrap: break-word;
   word-break: normal;
-  hyphens: auto;
+  hyphens: none;
 }
 
 h1{
