@@ -24,16 +24,42 @@ document.addEventListener('DOMContentLoaded', function () {
   var burger = document.querySelector('.burger');
   var navLinks = document.querySelector('.nav-links');
   if (burger && navLinks) {
+    var lockedScrollY = 0;
+    // `overflow: hidden` on <body> is the usual way to lock background
+    // scroll, but it makes body a scroll container of its own — which
+    // breaks `position: sticky` on the header inside it (the sticky calc
+    // starts tracking body's own scrollTop, which never moves, instead of
+    // the page's), so the header — and its "×" — scrolls off with the
+    // page instead of staying pinned. Freezing the page with a fixed body
+    // offset avoids that entirely.
+    function lockScroll() {
+      lockedScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = (-lockedScrollY) + 'px';
+      document.body.style.width = '100%';
+    }
+    function unlockScroll() {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, lockedScrollY);
+    }
     burger.addEventListener('click', function () {
       var isOpen = navLinks.classList.toggle('is-open');
       burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) lockScroll(); else unlockScroll();
+      // The top bar also hides itself by translating .site-header, which
+      // turns it into the containing block for the fixed-position mobile
+      // menu (and its close button) — clear that so the menu covers the
+      // full viewport instead of just the header's own box.
+      var siteHeader = document.querySelector('.site-header');
+      if (isOpen && siteHeader) siteHeader.classList.remove('topbar-hidden');
     });
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         navLinks.classList.remove('is-open');
         burger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        unlockScroll();
       });
     });
   }

@@ -1903,8 +1903,18 @@ img.zoomable{ cursor: zoom-in; }
 }
 
 /* ---------- Hero: secondary "training" callout on dark hero ---------- */
-.hero-statement-onblock{
+.hero-copy .hero-statement-onblock{
   color: var(--on-block);
   margin-top: 32px;
+  font-size: clamp(1.6rem, 0.9rem + 2vw, 2.4rem);
+  line-height: 1.15;
+  max-width: none;
+}
+.hero-copy .hero-statement-onblock em{
+  display: inline;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 600;
+  color: #9FC2E0;
 }
 .hero-sub-onblock{ color: var(--on-block-70); }
