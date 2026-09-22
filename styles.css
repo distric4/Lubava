@@ -80,7 +80,8 @@ h1, h2, h3, h4{
   font-weight: 800;
   text-transform: uppercase;
   overflow-wrap: break-word;
-  word-break: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 h1{
@@ -99,6 +100,15 @@ h3{
   font-size: 1.3rem;
   line-height: 1.15;
   letter-spacing: 0.01em;
+}
+
+/* On narrow phones the vw-based clamps above can force a single long
+   uppercase word (e.g. "ПРОФЕССИОНАЛЬНОЕ") wider than the line, which
+   makes overflow-wrap break it mid-word. Give h1/h2 more headroom to
+   shrink there so whole words keep wrapping as whole words. */
+@media (max-width: 420px){
+  h1{ font-size: clamp(1.9rem, 1.3rem + 3.6vw, 4.2rem); }
+  h2{ font-size: clamp(1.55rem, 1.05rem + 2vw, 2.75rem); }
 }
 
 p{ margin: 0 0 1em; }
