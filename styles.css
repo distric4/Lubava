@@ -577,6 +577,9 @@ hr.hairline{
   flex-direction: column;
   align-items: flex-start;
 }
+/* This heading is a long two-part title (programme name + quoted title),
+   not a short section label — the default h2 scale reads oversized here. */
+.teach-main h2{ font-size: clamp(1.5rem, 1.05rem + 1.6vw, 2.1rem); }
 .teach-lede{ margin-top: 16px; max-width: 46ch; }
 .teach-list{
   list-style: none;
