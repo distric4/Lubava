@@ -255,10 +255,6 @@ hr.hairline{
   padding-top: 16px;
   padding-bottom: 16px;
 }
-.nav-links{ border-left: 1px solid var(--line); padding-left: 24px; }
-@media (max-width: 1279px){
-  .nav-links{ border-left: none; padding-left: 0; }
-}
 .wordmark{
   text-decoration: none;
   color: var(--ink);
@@ -1984,6 +1980,14 @@ img.zoomable{ cursor: zoom-in; }
 @media (max-width: 1279px){
   .header-logo{ display: none; }
 }
+@media (min-width: 1280px){
+  /* Divider now sits between the logo and the name, not between the
+     name and the nav links. */
+  .wordmark{
+    padding-left: 18px;
+    border-left: 1px solid var(--line);
+  }
+}
 /* The header CTA is redundant once the mobile slide-out already ends in
    its own full-width "Записаться" button — keep it only there, not in
    the horizontal desktop bar. */
@@ -2004,23 +2008,29 @@ img.zoomable{ cursor: zoom-in; }
 /* ---------- Header: hide "Отзывы"/"Контакты" on desktop, emphasize phone ---------- */
 @media (min-width: 1280px){
   .nav-desktop-hide{ display: none; }
+  /* nav-links used to shrink-to-fit and hug the right edge, packing the
+     links tight against the phone. Let it fill the row instead, so the
+     links stay near the wordmark and margin-left:auto has real slack to
+     push the phone out to the far right. */
+  .nav-links{ flex: 1 1 auto; }
+  .nav-phone{ margin-left: auto; }
 }
 .nav-phone{
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
 }
-.nav-phone-row{
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.nav-phone-row .icon{
-  width: 18px;
-  height: 18px;
+.nav-phone-icon{
+  width: 22px;
+  height: 22px;
   stroke: var(--accent);
+  flex: none;
+}
+.nav-phone-text{
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 .nav-phone-num{
   font-weight: 800;
@@ -2037,8 +2047,13 @@ img.zoomable{ cursor: zoom-in; }
   color: var(--ink-50);
   white-space: nowrap;
 }
+@media (min-width: 1280px){
+  .nav-phone-num{ font-size: 17px; }
+  .nav-phone-icon{ width: 30px; height: 30px; }
+}
 @media (max-width: 1279px){
-  .nav-links .nav-phone{ align-items: flex-start; gap: 4px; }
+  .nav-links .nav-phone{ gap: 12px; }
+  .nav-links .nav-phone-icon{ width: 30px; height: 30px; }
   .nav-links .nav-phone-num{ font-size: 20px; }
   .nav-links .nav-phone-caption{ font-size: 13px; }
 }
