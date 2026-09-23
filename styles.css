@@ -1921,3 +1921,45 @@ img.zoomable{ cursor: zoom-in; }
   color: #9FC2E0;
 }
 .hero-sub-onblock{ color: var(--on-block-70); }
+
+/* ---------- Center logo (footer, obo-mne, kontakty) ---------- */
+.footer-logo{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.footer-logo img{
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+@media (min-width: 800px){
+  .footer-logo{ justify-content: flex-end; }
+}
+.center-brand{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.center-brand img{
+  width: 160px;
+  height: auto;
+  flex: none;
+}
+.center-brand p{
+  margin: 0;
+  color: var(--ink-70);
+  font-size: 15px;
+  max-width: 46ch;
+}
+
+@media (max-width: 480px){
+  .center-brand{ flex-direction: column; align-items: flex-start; gap: 14px; }
+  .center-brand img{ width: 140px; }
+  .footer-logo{ justify-content: flex-start; }
+  .footer-logo img{ max-width: 180px; }
+}
