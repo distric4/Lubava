@@ -1963,3 +1963,39 @@ img.zoomable{ cursor: zoom-in; }
   .footer-logo{ justify-content: flex-start; }
   .footer-logo img{ max-width: 180px; }
 }
+
+/* ---------- Header brand: center logo + wordmark ---------- */
+.site-header .container{ position: relative; }
+.brand-group{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.header-logo{
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+.header-logo img{
+  height: 40px;
+  width: auto;
+}
+@media (min-width: 1024px){
+  .header-logo img{ height: 46px; }
+}
+/* The header CTA is redundant once the mobile slide-out already ends in
+   its own full-width "Записаться" button — keep it only there, not in
+   the horizontal desktop bar. */
+@media (min-width: 1280px){
+  .nav-cta{ display: none; }
+}
+.nav-mobile-logo{ display: none; }
+@media (max-width: 1279px){
+  .nav-mobile-logo{
+    display: flex;
+    margin-bottom: 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-mobile-logo img{ height: 36px; width: auto; }
+}
