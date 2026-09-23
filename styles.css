@@ -1983,6 +1983,12 @@ img.zoomable{ cursor: zoom-in; }
 @media (min-width: 1024px){
   .header-logo img{ height: 46px; }
 }
+/* On phones the header logo crowds the two-line wordmark next to the
+   burger — it already reappears at the top of the slide-out menu, so
+   drop it from the compact top bar itself. */
+@media (max-width: 1279px){
+  .header-logo{ display: none; }
+}
 /* The header CTA is redundant once the mobile slide-out already ends in
    its own full-width "Записаться" button — keep it only there, not in
    the horizontal desktop bar. */
