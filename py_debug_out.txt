@@ -1,0 +1,6 @@
+$ cat /tmp/last_request.log -> exit 0
+OUT:
+CT=application/json
+LEN=192
+RAW={"type":"������������","name":"���� ������","phone":"+7 (900) 000-00-00","email":"","service":"�������������� ������������","format":"������","message":"�������� �������� �����","page":"����"}
+

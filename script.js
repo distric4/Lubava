@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Куда отправлять заявки. Укажите адрес формы (например Formspree:
   // 'https://formspree.io/f/xxxxxxx') — тогда заявки будут приходить сразу на почту.
   // Пока адрес пустой, вместо этого открывается готовое письмо на CONTACT_EMAIL.
-  var FORM_ENDPOINT = '';
+  var FORM_ENDPOINT = 'https://lyubava-knyazeva.ru/send-form.php';
   var CONTACT_EMAIL = 'klln@mail.ru';
   var CONTACT_PHONE = '8 (913) 914-33-62';
   var POLICY_LINK = '<a href="politika-konfidencialnosti.html" target="_blank" rel="noopener">политикой конфиденциальности</a>';
